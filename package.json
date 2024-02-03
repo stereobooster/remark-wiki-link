@@ -1,5 +1,5 @@
 {
-  "name": "remark-wiki-link",
+  "name": "@stereobooster/remark-wiki-link",
   "description": "Parse and render wiki-style links",
   "version": "2.0.1",
   "keywords": [
@@ -8,7 +8,7 @@
     "markdown",
     "gfm"
   ],
-  "repository": "https://github.com/landakram/remark-wiki-link",
+  "repository": "https://github.com/stereobooster/remark-wiki-link",
   "license": "MIT",
   "author": {
     "name": "Mark Hudnall",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "mdast-util-wiki-link": "^0.1.2",
+    "@stereobooster/mdast-util-wiki-link": "^0.1.2",
     "micromark-extension-wiki-link": "^0.0.4"
   },
   "devDependencies": {

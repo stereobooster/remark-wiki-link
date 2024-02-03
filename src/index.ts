@@ -1,5 +1,5 @@
 import { syntax } from 'micromark-extension-wiki-link'
-import { fromMarkdown, toMarkdown } from 'mdast-util-wiki-link'
+import { fromMarkdown, toMarkdown } from '@stereobooster/mdast-util-wiki-link'
 
 let warningIssued: boolean = false
 
