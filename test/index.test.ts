@@ -23,12 +23,13 @@ interface WikiLinkNode extends Node {
 }
 
 interface LinkTemplateOptions {
-  permalink: string;
-  alias: string;
+  slug: string;
+  permalink?: string;
+  alias?: string;
 }
 
 function assertWikiLink (obj: Node): asserts obj is WikiLinkNode {
-  if (!obj.data || obj.data.permalink === undefined) {
+  if (!obj.data || !('alias' in obj.data) || !('permalink' in obj.data)) {
     throw new Error('Not a wiki link')
   }
 }
@@ -45,7 +46,7 @@ describe('remark-wiki-link', () => {
     visit(ast, 'wikiLink', (node) => {
       assertWikiLink(node)
 
-      expect(node.data.permalink).toEqual('Wiki Link')
+      expect(node.data.permalink).toEqual(undefined)
       expect(node.data.hName).toEqual('a')
       expect(node.data.hProperties.href).toEqual('Wiki Link')
       expect(node.data.hChildren[0].value).toEqual('Wiki Link')
@@ -63,7 +64,7 @@ describe('remark-wiki-link', () => {
     visit(ast, 'wikiLink', (node) => {
       assertWikiLink(node)
 
-      expect(node.data.permalink).toEqual('Real Page')
+      expect(node.data.permalink).toEqual(undefined)
       expect(node.data.hName).toEqual('a')
       expect(node.data.alias).toEqual('Page Alias')
       expect(node.value).toEqual('Real Page')
@@ -85,7 +86,7 @@ describe('remark-wiki-link', () => {
     visit(ast, 'wikiLink', node => {
       assertWikiLink(node)
 
-      expect(node.data.permalink).toEqual('Real Page')
+      expect(node.data.permalink).toEqual(undefined)
       expect(node.data.hName).toEqual('a')
       expect(node.data.alias).toEqual('Page Alias')
       expect(node.value).toEqual('Real Page')
@@ -136,10 +137,10 @@ describe('remark-wiki-link', () => {
       const processor = unified()
         .use(markdown)
         .use(wikiLinkPlugin, {
-          linkTemplate: ({ permalink, alias }:LinkTemplateOptions) => ({
+          linkTemplate: ({ slug, permalink, alias }:LinkTemplateOptions) => ({
             hName: 'span',
-            hProperties: { 'data-href': permalink },
-            hChildren: [{ type: 'text', value: alias }]
+            hProperties: { 'data-href': permalink || slug },
+            hChildren: [{ type: 'text', value: alias || slug }]
           })
         })
 

@@ -1,7 +1,7 @@
 {
   "name": "@stereobooster/remark-wiki-link",
   "description": "Parse and render wiki-style links",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "keywords": [
     "remark",
     "remark-plugin",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@stereobooster/mdast-util-wiki-link": "^0.1.2",
+    "@stereobooster/mdast-util-wiki-link": "^0.2.0",
     "micromark-extension-wiki-link": "^0.0.4"
   },
   "devDependencies": {
