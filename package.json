@@ -1,7 +1,7 @@
 {
   "name": "@stereobooster/remark-wiki-link",
   "description": "Parse and render wiki-style links",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "keywords": [
     "remark",
     "remark-plugin",
